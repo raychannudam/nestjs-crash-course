@@ -1,0 +1,55 @@
+//create new nestjs project
+nest new (projectname) 
+
+//to run nestjs project
+npm run start:dev
+
+
+//to create module 
+nest generate module (modulename)
+//to create controller
+nest g controller (cotrollername)
+//to create server
+nest g service (servicename)
+
+//@Param('key') = to get url 
+//@Body() = to get input
+//@Query('key') = to get query on url
+
+//to inject service into controller we need constucter
+constucter(private nameService: NameService){}
+
+//if you transfer data from controller pass to service, you need Dto for your body
+
+//to creater swagger (API testing UI)
+1. go to main.test
+2. write below code
+const config = new DocumentBuilder()
+  .setTitle('Nest API') //whatever you want
+  .setDescription('Testing') //whatever you want
+  .setVersion('1.0') //whatever you want
+  .build();
+const document = SwaggerModule.createDocument(app, config)
+SwaggerModule.setup('/', app, document)
+
+//to create the session 
+1. go to controller
+2. write code below (upper @Controller)
+@ApiTags('sessionname')
+
+//use @ApiProperty() below each attribute in class to show the schema)
+
+//use @ApiCreatedResponse({type: ...}) to create schema for respond (upper @Post() or @Get() or... in controller)
+
+//to create Exception and error handling user
+throw new (any http status respond)
+more: https://docs.nestjs.com/exception-filters
+
+//to user class-validation
+1. go to main.ts and type
+app.useGlobalPipes(new ValidationPipe()) 
+2. Then use use decorator in class-validation below any feild or expression you want to validate
+more : https://github.com/typestack/class-validator
+
+//to generate controller, service, module automatically
+nest g resource (name)
